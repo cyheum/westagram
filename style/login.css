@@ -1,75 +1,76 @@
-* {
-    box-sizing: border-box;
-}
-
 .WrapLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    flex-shrink: 0;
-    background-color: white;
-    width: 350px;
-    height: 380px;
-    border: 1px solid #d6d6d6;
-    padding: 10px 0;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-shrink: 0;
+  background-color: white;
+  width: 350px;
+  height: 380px;
+  border: 1px solid #d6d6d6;
+  padding: 10px 0;
+  margin: 10px;
 }
 
-.WrapArticle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
+.WrapArticle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
 }
 
 .instaImg {
-    width: 175px;
-    margin: 10px;
+  width: 175px;
+  margin: 10px;
 }
 
-#iphoneImg{
-    width: 380px;
-    margin: 10px;
+#iphoneImg {
+  width: 390px;
+  margin: 10px;
 }
 
 .WrapImg {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.WrapTexts{
-    display: flex;
-    flex-direction: column;
+.WrapTexts {
+  display: flex;
+  flex-direction: column;
 }
 
-.LoginTextbox{
-    width: 270px;
-    height: 36px;
-    padding: 7px;
-    margin: 3px;
-    font-size: 12px;
-    background-color: #FAFAFA;
-    border: 1px solid #d6d6d6;
-    border-radius: 3px;
+.LoginTextbox {
+  width: 270px;
+  height: 36px;
+  padding: 7px;
+  margin: 3px;
+  font-size: 12px;
+  background-color: #fafafa;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
 }
 
-#loginButton{
-    width: 270px;
-    height: 30px;
-    background-color: #B9DFFC;
-    border-width: 0;
-    border-radius: 3px;
-    margin: 15px 3px;
-    color: white;
+.loginButton {
+  width: 270px;
+  height: 30px;
+  background-color: #b9dffc;
+  border-width: 0;
+  border-radius: 3px;
+  margin: 15px 3px;
+  color: white;
 }
 
 #forgetPw {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
-#forgetPw a{
-    text-decoration: none;
-    color: #00376b;
-    font-size: 12px;
+#forgetPw a {
+  text-decoration: none;
+  color: #00376b;
+  font-size: 12px;
+}
+
+.Wrapsection {
+  min-width: 860px;
+  margin: 0 auto;
 }
