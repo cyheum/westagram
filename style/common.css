@@ -4,5 +4,16 @@
 
 ul li {
   list-style: none;
+  position: relative;
   margin-bottom: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+ul li a {
+  margin: 0 5px;
 }
