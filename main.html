@@ -27,19 +27,27 @@
             alt="instaMainImg"
           />
         </div>
-        <input class="navTextBar" type="text" placeholder="검색" />
+        <div class="WrapNavTextBar">
+          <input class="navTextBar" type="text" placeholder="검색" />
+          <div class="searchIconBox">
+            <div class="searchIconBox2">
+              <span class="searchImg"></span>
+              <span class="searchText">검색</span>
+            </div>
+          </div>
+        </div>
         <div class="hrefIcons">
-          <img class="home" src="img/home.png" alt="home" />
-          <img class="dmIcon" src="img/dm.png" alt="DM" />
-          <img class="iconStyle" src="img/explore.png" alt="compass" />
-          <img class="iconStyle" src="img/heart.png" alt="heart" />
-          <img class="iconStyle" src="img/profile.png" alt="profile" />
+          <img class="home" alt="home" src="img/home.png" />
+          <img class="dmIcon" alt="DM" src="img/dm.png" />
+          <img class="iconStyle" alt="compass" src="img/explore.png" />
+          <img class="iconStyle" alt="heart" src="img/heart.png" />
+          <img class="iconStyle" alt="profile" src="img/profile.png" />
         </div>
       </nav>
     </header>
     <main>
       <div class="wrapMain">
-        <div class="feeds">
+        <section class="feeds">
           <article>
             <div class="feedsTop">
               <div class="wrapProfileL">
@@ -85,7 +93,7 @@
               </div>
             </div>
             <div>
-              <ul style="padding-left: 10px; margin: 0;">
+              <ul style="padding: 0 10px; margin: 0;">
                 <li style="margin-bottom: 8px;">
                   <a href="">ye_heumheummm</a>두부야 안뇨오옹
                 </li>
@@ -107,16 +115,15 @@
               <div class="feedTime">6시간전</div>
             </div>
             <form class="feedComment" type="submit">
-              <input
+              <textarea
                 class="commentText"
-                type="textarea"
                 placeholder="댓글 달기..."
-              />
+              ></textarea>
               <button class="commentButton">게시</button>
             </form>
           </article>
-        </div>
-        <div class="feeds">
+        </section>
+        <section class="feeds">
           <article>
             <div class="feedsTop">
               <div class="wrapProfileL">
@@ -184,93 +191,93 @@
               <div class="feedTime">12시간전</div>
             </div>
             <form class="feedComment" type="submit">
-              <input
+              <textarea
                 class="commentText"
                 type="textarea"
                 placeholder="댓글 달기..."
-              />
+              ></textarea>
               <button class="commentButton">게시</button>
             </form>
           </article>
-        </div>
+        </section>
         <div class="asideWrap">
           <aside class="main-right">
             <div class="wrapProfileR">
-              <img src="img/myprofile.png" alt="profileImg" />
+              <img alt="profileImg" src="img/myprofile.png" />
               <div>
-                <a id="yourName" href="">ye_heumheummm</a>
+                <a id="yourName">ye_heumheummm</a>
                 <p>최예흠</p>
               </div>
             </div>
-            <div class="storyWrap">
-              <div class="storyStyle">
+            <div class="storyRecomWrap">
+              <div class="storyRecomStyle">
                 <div>스토리</div>
-                <div><a href="">모두 보기</a></div>
+                <div><a class="storyAll">모두 보기</a></div>
               </div>
               <div class="wrapProfile1">
                 <img src="img/yeonuk.png" alt="profileImg" />
                 <div>
-                  <a href="">yeonukhwang</a>
+                  <a>yeonukhwang</a>
                   <p>1분전</p>
                 </div>
               </div>
               <div class="wrapProfile2">
                 <img src="img/sanghun.png" alt="profileImg" />
                 <div>
-                  <a href="">sanghun</a>
+                  <a>sanghun</a>
                   <p>28분전</p>
                 </div>
               </div>
               <div class="wrapProfile3">
                 <img src="img/dlwlrma.png" alt="profileImg" />
                 <div>
-                  <a href="">dlwlrma</a>
+                  <a>dlwlrma</a>
                   <p>6시간전</p>
                 </div>
               </div>
               <div class="wrapProfile4">
                 <img src="img/bsjun.png" alt="profileImg" />
                 <div>
-                  <a href="">bn_sj2013</a>
+                  <a>bn_sj2013</a>
                   <p>7시간전</p>
                 </div>
               </div>
             </div>
-            <div class="wrapRecommend">
-              <div class="storyStyle">
+            <div class="storyRecomWrap">
+              <div class="storyRecomStyle">
                 <div>회원님을 위한 추천</div>
-                <div><a href="">모두 보기</a></div>
+                <div><a class="storyAll">모두 보기</a></div>
               </div>
               <div class="wrapProfile1">
                 <img src="img/gnlcks.png" alt="profileImg" />
                 <div>
-                  <a href="">you_hchan</a>
+                  <a>you_hchan</a>
                   <p>유휘찬</p>
                 </div>
               </div>
               <div class="wrapProfile2">
                 <img src="img/ckdtlr.png" alt="profileImg" />
                 <div>
-                  <a href="">rnjsckdtlr_dd</a>
+                  <a>rnjsckdtlr_dd</a>
                   <p>권창식</p>
                 </div>
               </div>
               <div class="wrapProfile3">
                 <img src="img/tkdrn.png" alt="profileImg" />
                 <div>
-                  <a href="">ohsan9_539</a>
+                  <a>ohsan9_539</a>
                   <p>오상구</p>
                 </div>
               </div>
               <div class="wrapProfile4">
                 <img src="img/profile.png" alt="profileImg" />
                 <div>
-                  <a href="">ma_sang_1</a>
+                  <a>ma_sang_1</a>
                   <p>마상원</p>
                 </div>
               </div>
             </div>
-            <div class="finish">
+            <div class="copyRight">
               instagram 정보 . 지원 . 홍보 센터 . API . 채용 정보 .
               개인정보처리방침 . 약관 . 디렉터리 . 프로필 .<br />
               해시태그 . 언어<br /><br />© 2020 INSTAGRAM
@@ -279,7 +286,6 @@
         </div>
       </div>
     </main>
-
     <script src="js/main.js"></script>
   </body>
 </html>

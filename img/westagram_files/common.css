@@ -3,10 +3,10 @@
 }
 
 ul li {
-  margin-bottom: 2px;
-  position: relative;
-  word-break: break-all;
   list-style: none;
+  position: relative;
+  margin-bottom: 2px;
+  word-break: break-all;
 }
 
 a {
@@ -15,16 +15,6 @@ a {
   font-weight: bold;
 }
 
-a:hover {
-  cursor: pointer;
-}
-
 ul li a {
   margin: 0 5px;
-}
-
-input:focus,
-textarea:focus,
-button:focus {
-  outline: none;
 }
