@@ -144,3 +144,9 @@ mediaQ.addListener((e) => {
     wrapMain[0].classList.remove("changeMain");
   }
 });
+
+// 검색창 활성화
+//const navText = document.getElementsByClassName("navTextBar")[0];
+const SearchBox = document.getElementsByClassName("wrapSearchBox")[0];
+
+navText.addEventListener("focusIn", () => {});
