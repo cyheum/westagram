@@ -98,6 +98,9 @@ const searchIconText = document.getElementsByClassName("searchText")[0];
 searchIcon.addEventListener("click", () => {
   navText.setAttribute("style", "z-index: 10;");
   navText.focus();
+  if (navText.value.length > 0) {
+    navText.select(); // 추가 : select() 메서드로 텍스트 전체 선택
+  }
 });
 
 navText.addEventListener("focusout", () => {
@@ -149,4 +152,22 @@ mediaQ.addListener((e) => {
 //const navText = document.getElementsByClassName("navTextBar")[0];
 const SearchBox = document.getElementsByClassName("wrapSearchBox")[0];
 
-navText.addEventListener("focusIn", () => {});
+navText.addEventListener("keyup", () => {
+  isNavTextEmpty();
+});
+
+navText.addEventListener("focusout", () => {
+  SearchBox.classList.add("hiddenSearchBox");
+});
+
+navText.addEventListener("focusin", () => {
+  isNavTextEmpty();
+});
+
+function isNavTextEmpty() {
+  if (navText.value.length > 0) {
+    SearchBox.classList.remove("hiddenSearchBox");
+  } else {
+    SearchBox.classList.add("hiddenSearchBox");
+  }
+}

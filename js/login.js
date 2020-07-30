@@ -14,11 +14,11 @@ pwText.addEventListener("keyup", () => {
 });
 
 function loginBtnColor() {
-  if (idText.value.length > 0 && pwText.value.length > 6) {
-    loginBtn.setAttribute("style", "opacity: 1");
+  if (idText.value.length > 0 && pwText.value.length > 5) {
     loginBtn.disabled = false;
   } else {
-    loginBtn.setAttribute("style", "opacity: 0.4");
     loginBtn.disabled = true;
   }
 }
+
+//추가 : class에 disabled 속성을 만들어서 js에서 뺌
