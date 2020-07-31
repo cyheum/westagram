@@ -1,102 +1,102 @@
-// 댓글 넣기 시스템 구현
-const commentText = document.getElementsByClassName("commentText");
-const commentButton = document.getElementsByClassName("commentButton");
-const comment = document.getElementsByTagName("ul");
-const name = document.getElementById("yourName");
+//section별로 관리 시스템 구현
 
-const commentChange = (num) => {
-  if (commentText[num].value === "") {
-    return;
-  } else {
-    let wrapCommentLi = document.createElement("li");
-    let wrapCommentA = document.createElement("a");
-    let wrapCommentImg = document.createElement("img");
+const section = Array.from(document.getElementsByTagName("section"));
 
-    wrapCommentImg.setAttribute("class", "commentHeart colorHeart");
-    wrapCommentImg.setAttribute("src", "img/heart.png");
-    wrapCommentImg.setAttribute("alt", "heart");
+section.forEach((el) => {
+  //댓글 넣기 기능 구현
 
-    wrapCommentA.append(name.text);
-    wrapCommentLi.append(wrapCommentA);
-    wrapCommentLi.append(commentText[num].value);
-    wrapCommentLi.append(wrapCommentImg);
+  let commentText = el.getElementsByClassName("commentText");
+  let commentButton = el.getElementsByClassName("commentButton");
+  let comment = el.getElementsByTagName("ul");
+  let name = document.getElementById("yourName");
 
-    comment[num].append(wrapCommentLi);
-    commentText[num].value = "";
-  }
-};
+  const commentChange = () => {
+    if (commentText[0].value === "") {
+      return;
+    } else {
+      let wrapCommentLi = document.createElement("li");
 
-for (let i = 0; i < commentButton.length; i++) {
-  commentButton[i].addEventListener("click", (e) => {
-    commentChange(i);
+      wrapCommentLi.innerHTML = `<a>${name.text}</a>${commentText[0].value}<span class="commentIcons"><img class="commentHeart colorHeart" src="img/heart.png" alt="heart" /><span class="searchXBtn"></span></span>`;
+      comment[0].append(wrapCommentLi);
+      commentText[0].value = "";
+      commentText = el.getElementsByClassName("commentText");
+
+      // 새로운 댓글 하트 버튼 활성화 구현
+
+      let heartImg = el.getElementsByClassName("colorHeart");
+      let lastHeart = el.getElementsByClassName("colorHeart")[
+        heartImg.length - 1
+      ];
+      let isItPush = false;
+      lastHeart.addEventListener("click", function () {
+        isItPush = likeBtnPush(isItPush, lastHeart); //하트 컬러 부여 함수 호출
+      });
+    }
+  };
+
+  commentButton[0].addEventListener("click", (e) => {
+    commentChange();
     e.preventDefault();
   });
-}
+  //enter로 댓글 넣기
 
-//enter로 댓글 넣기
-
-for (let i = 0; i < commentText.length; i++) {
-  commentText[i].addEventListener("keypress", (e) => {
+  commentText[0].addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      if (commentText[i].value === "") {
+      if (commentText[0].value === "") {
         return;
       } else {
         event.preventDefault();
-        commentChange(i);
+        commentChange();
       }
     }
   });
-}
+  //기존 좋아요 버튼 구현 및 좋아요 숫자 추가, 감소 기능 구현
 
+  let heartBtn = Array.from(el.getElementsByClassName("colorHeart"));
+  let peopleCount = el.getElementsByClassName("peopleCount")[0];
+
+  heartBtn.forEach((el) => {
+    let isItLiked = false;
+    el.addEventListener("click", function () {
+      let isBigHeartIn = this.classList.contains("bigHeart");
+
+      if (isBigHeartIn) {
+        if (!isItLiked) {
+          peopleCount.textContent = Number(peopleCount.textContent) + 1;
+        } else {
+          peopleCount.textContent = Number(peopleCount.textContent) - 1;
+        }
+      }
+      isItLiked = likeBtnPush(isItLiked, el);
+    });
+  });
+});
+
+// 하트 컬러 부여 함수 선언
+function likeBtnPush(bool, el) {
+  if (!bool) {
+    el.src = "img/redheart.png";
+    bool = true;
+    return bool;
+  } else {
+    el.src = "img/heart.png";
+    bool = false;
+    return bool;
+  }
+}
 //댓글 3개이상이면 더보기 버튼 생성 및 높이 고정
 //const comment = document.getElementsByTagName("ul"); 위에 선언
 
-const commentList = document.getElementsByTagNameNS;
-
-//좋아요 버튼 구현
-let isItColor = [];
-let isHeartPush = true;
-let heartBtn = document.getElementsByClassName("colorHeart");
-
-for (let i = 0; i < heartBtn.length; i++) {
-  isItColor[i] = false;
-  let value = heartBtn[i];
-
-  value.addEventListener("click", function () {
-    let isBigHeart = this.classList.contains("bigHeart");
-
-    if (isBigHeart) {
-      let article = this.parentNode.parentNode.parentNode;
-      console.log(article);
-      let peopleCount = article.getElementsByClassName("peopleCount")[0];
-      console.log(peopleCount);
-
-      let newPeopleCount;
-      if (!isItColor[i]) {
-        newPeopleCount = "외 1,399명";
-      } else {
-        newPeopleCount = "외 1,398명";
-      }
-      peopleCount.innerHTML = newPeopleCount;
-    }
-
-    if (!isItColor[i]) {
-      this.src = "img/redheart.png";
-      isItColor[i] = true;
-    } else {
-      this.src = "img/heart.png";
-      isItColor[i] = false;
-    }
-  });
-}
+const commentList = document.getElementsByTagName;
 
 // nav 검색 관련
 const searchIcon = document.getElementsByClassName("searchIconBox")[0];
 const navText = document.getElementsByClassName("navTextBar")[0];
+const WrapNavText = document.getElementsByClassName("navTextBarCon")[0];
 const searchIconText = document.getElementsByClassName("searchText")[0];
 
 searchIcon.addEventListener("click", () => {
-  navText.setAttribute("style", "z-index: 10;");
+  WrapNavText.setAttribute("style", "z-index: 10;");
   navText.focus();
   if (navText.value.length > 0) {
     navText.select(); // 추가 : select() 메서드로 텍스트 전체 선택
@@ -104,7 +104,7 @@ searchIcon.addEventListener("click", () => {
 });
 
 navText.addEventListener("focusout", () => {
-  navText.setAttribute("style", "z-index: 0;");
+  WrapNavText.setAttribute("style", "z-index: 0;");
   if (navText.value === "") {
     searchIconText.innerHTML = `검색`;
   } else {

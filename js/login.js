@@ -2,14 +2,11 @@
 const idText = document.getElementsByClassName("loginidText")[0];
 const pwText = document.getElementsByClassName("loginpwText")[0];
 const loginBtn = document.getElementsByClassName("loginButton")[0];
+const WrapLoginText = document.getElementsByClassName("wrapLogin")[0];
 
 loginBtn.disabled = true;
 
-idText.addEventListener("keyup", () => {
-  loginBtnColor();
-});
-
-pwText.addEventListener("keyup", () => {
+WrapLoginText.addEventListener("keyup", () => {
   loginBtnColor();
 });
 
