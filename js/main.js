@@ -1,88 +1,73 @@
 //section별로 관리 시스템 구현
+const name = document.getElementById("yourName");
 
-const section = Array.from(document.getElementsByTagName("section"));
+const sectionList = Array.from(document.getElementsByTagName("section"));
 
-section.forEach((el) => {
+sectionList.forEach((section) => {
   //댓글 넣기 기능 구현
 
-  let commentText = el.getElementsByClassName("commentText");
-  let commentButton = el.getElementsByClassName("commentButton");
-  let comment = el.getElementsByTagName("ul");
-  let name = document.getElementById("yourName");
+  const commentInput = section.getElementsByClassName("commentText")[0];
+  const commentSubmitButton = section.getElementsByClassName(
+    "commentButton"
+  )[0];
+  const commentList = section.getElementsByTagName("ul")[0];
 
-  const commentChange = () => {
-    if (commentText[0].value === "") {
+  const submitComment = () => {
+    if (commentInput.value === "") {
       return;
-    } else {
-      let wrapCommentLi = document.createElement("li");
-
-      wrapCommentLi.innerHTML = `<a>${name.text}</a>${commentText[0].value}<span class="commentIcons"><img class="commentHeart colorHeart" src="img/heart.png" alt="heart" /><span class="searchXBtn"></span></span>`;
-      comment[0].append(wrapCommentLi);
-      commentText[0].value = "";
-      commentText = el.getElementsByClassName("commentText");
-
-      // 새로운 댓글 하트 버튼 활성화 구현
-
-      let heartImg = el.getElementsByClassName("colorHeart");
-      let lastHeart = el.getElementsByClassName("colorHeart")[
-        heartImg.length - 1
-      ];
-      let isItPush = false;
-      lastHeart.addEventListener("click", function () {
-        isItPush = likeBtnPush(isItPush, lastHeart); //하트 컬러 부여 함수 호출
-      });
     }
+
+    const wrapCommentLi = document.createElement("li");
+    wrapCommentLi.innerHTML = `<a>${name.text}</a>${commentInput.value}<span class="commentIcons"><img class="commentHeart colorHeart" src="img/heart.png" alt="heart" /><span class="searchXBtn"></span></span>`;
+    commentList.append(wrapCommentLi);
+    commentInput.value = "";
+
+    // 새로운 댓글 하트 버튼 활성화 구현
+
+    const lastHeart = wrapCommentLi.getElementsByClassName("commentHeart")[0];
+
+    let isLiked = false;
+    lastHeart.addEventListener("click", function () {
+      isLiked = !isLiked;
+      updateHeartIcon(isLiked, lastHeart); //하트 컬러 부여 함수 호출
+    });
   };
 
-  commentButton[0].addEventListener("click", (e) => {
-    commentChange();
+  commentSubmitButton.addEventListener("click", (e) => {
     e.preventDefault();
+    submitComment();
   });
-  //enter로 댓글 넣기
 
-  commentText[0].addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      if (commentText[0].value === "") {
-        return;
-      } else {
-        event.preventDefault();
-        commentChange();
-      }
+  //enter로 댓글 넣기
+  commentInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && commentInput.value !== "") {
+      event.preventDefault();
+      submitComment();
     }
   });
+
   //기존 좋아요 버튼 구현 및 좋아요 숫자 추가, 감소 기능 구현
+  const heartBtnList = Array.from(section.getElementsByClassName("colorHeart"));
+  let peopleCount = section.getElementsByClassName("peopleCount")[0];
 
-  let heartBtn = Array.from(el.getElementsByClassName("colorHeart"));
-  let peopleCount = el.getElementsByClassName("peopleCount")[0];
+  heartBtnList.forEach((heartBtn) => {
+    let isLiked = false;
+    heartBtn.addEventListener("click", function () {
+      isLiked = !isLiked;
+      updateHeartIcon(isLiked, heartBtn);
 
-  heartBtn.forEach((el) => {
-    let isItLiked = false;
-    el.addEventListener("click", function () {
-      let isBigHeartIn = this.classList.contains("bigHeart");
-
-      if (isBigHeartIn) {
-        if (!isItLiked) {
-          peopleCount.textContent = Number(peopleCount.textContent) + 1;
-        } else {
-          peopleCount.textContent = Number(peopleCount.textContent) - 1;
-        }
+      const isBigHeart = this.classList.contains("bigHeart");
+      if (isBigHeart) {
+        peopleCount.textContent =
+          Number(peopleCount.textContent) + (isLiked ? 1 : -1);
       }
-      isItLiked = likeBtnPush(isItLiked, el);
     });
   });
 });
 
 // 하트 컬러 부여 함수 선언
-function likeBtnPush(bool, el) {
-  if (!bool) {
-    el.src = "img/redheart.png";
-    bool = true;
-    return bool;
-  } else {
-    el.src = "img/heart.png";
-    bool = false;
-    return bool;
-  }
+function updateHeartIcon(isLiked, heartIcon) {
+  heartIcon.src = isLiked ? "img/redheart.png" : "img/heart.png";
 }
 //댓글 3개이상이면 더보기 버튼 생성 및 높이 고정
 //const comment = document.getElementsByTagName("ul"); 위에 선언
@@ -148,12 +133,12 @@ mediaQ.addListener((e) => {
   }
 });
 
-// 검색창 활성화
+// 검색창 활성화 (아직 텍스트 value로 검색하는 기능은 구현 못함)
 //const navText = document.getElementsByClassName("navTextBar")[0];
 const SearchBox = document.getElementsByClassName("wrapSearchBox")[0];
 
 navText.addEventListener("keyup", () => {
-  isNavTextEmpty();
+  toggleHiddenSearchBox();
 });
 
 navText.addEventListener("focusout", () => {
@@ -161,10 +146,10 @@ navText.addEventListener("focusout", () => {
 });
 
 navText.addEventListener("focusin", () => {
-  isNavTextEmpty();
+  toggleHiddenSearchBox();
 });
 
-function isNavTextEmpty() {
+function toggleHiddenSearchBox() {
   if (navText.value.length > 0) {
     SearchBox.classList.remove("hiddenSearchBox");
   } else {
